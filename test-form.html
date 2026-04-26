@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Formulario</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" style="padding-top: 50px;">
+        <h1>Test del Formulario de Contacto</h1>
+        
+        <!-- Copia del formulario de contacto -->
+        <form class="contact-form" id="contactForm">
+            <!-- Información Personal -->
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder=" " required>
+                    <label for="name">Nombre completo *</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder=" " required>
+                    <label for="email">Correo electrónico *</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="tel" id="phone" name="phone" placeholder=" ">
+                    <label for="phone">Teléfono</label>
+                </div>
+                <div class="form-group">
+                    <input type="date" id="appointment" name="appointment" placeholder=" ">
+                    <label for="appointment">Fecha preferida (opcional)</label>
+                </div>
+            </div>
+
+            <!-- Tipo de Servicio -->
+            <div class="form-group">
+                <select id="serviceType" name="serviceType" required>
+                    <option value="">Selecciona tipo de servicio *</option>
+                    <option value="reparacion">🛠️ Reparación PC/Laptop</option>
+                    <option value="montaje">💻 Montaje Hardware</option>
+                    <option value="software">⚙️ Instalación Windows/Linux</option>
+                </select>
+            </div>
+
+            <!-- Urgencia (Radio Buttons) -->
+            <div class="form-group">
+                <label class="form-label">¿Cuál es la urgencia del servicio? *</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="urgency" value="normal" checked>
+                        <span class="radio-custom"></span>
+                        <span class="radio-text">Normal (1-3 días)</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="urgency" value="urgent">
+                        <span class="radio-custom"></span>
+                        <span class="radio-text">Urgente (24 horas)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Servicios Adicionales (Checkboxes) -->
+            <div class="form-group">
+                <label class="form-label">Servicios adicionales necesarios:</label>
+                <div class="checkbox-group-grid">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="additional[]" value="diagnostico">
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">Diagnóstico completo</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="additional[]" value="limpieza">
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">Limpieza interna</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Mensaje -->
+            <div class="form-group">
+                <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+                <label for="message">Describe tu problema o proyecto *</label>
+                <small class="form-help">Incluye detalles como marca/modelo del equipo, síntomas, etc.</small>
+            </div>
+
+            <!-- Archivos Adjuntos -->
+            <div class="form-group">
+                <label class="form-label" for="files">Adjuntar archivos (opcional):</label>
+                <input type="file" id="files" name="files" multiple accept=".jpg,.jpeg,.png,.pdf,.txt" class="file-input">
+                <small class="form-help">Puedes subir fotos del problema o documentos relacionados (máx. 5MB por archivo)</small>
+            </div>
+
+            <!-- Preferencia de Contacto -->
+            <div class="form-group">
+                <label class="form-label">Preferencia de contacto:</label>
+                <div class="radio-group horizontal">
+                    <label class="radio-label">
+                        <input type="radio" name="contactPref" value="email" checked>
+                        <span class="radio-custom"></span>
+                        <span class="radio-text">Email</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="contactPref" value="phone">
+                        <span class="radio-custom"></span>
+                        <span class="radio-text">Teléfono</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Política de Privacidad -->
+            <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="privacy" required>
+                    <span class="checkmark"></span>
+                    <span class="checkbox-text">Acepto la política de privacidad *</span>
+                </label>
+            </div>
+
+            <!-- Botón de Envío -->
+            <button type="submit" class="btn btn-primary btn-full">
+                <span id="btnText">Enviar solicitud de presupuesto</span>
+            </button>
+        </form>
+        
+        <div style="margin-top: 50px; padding: 20px; background: #f0f0f0; border-radius: 8px;">
+            <h3>Problemas arreglados:</h3>
+            <ol>
+                <li>Labels flotantes ahora no colisionan con .form-label</li>
+                <li>Checkbox-grid ahora es responsivo (1 columna en móviles)</li>
+                <li>Radio buttons horizontales se convierten a vertical en móviles</li>
+                <li>Campos de fecha y archivo tienen mejor estilo</li>
+                <li>Espaciado mejorado entre elementos del formulario</li>
+                <li>Estilos responsivos agregados para todos los nuevos elementos</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

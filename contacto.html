@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <title>Contacto | JUANJOSE - Reparación PC & Laptops Montoro, Córdoba</title>
+    <meta name="description" content="Contacta con Juanjo para reparación PC en Montoro, Córdoba. WhatsApp, email o formulario. Diagnóstico gratis.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="particleCanvas"></canvas>
+
+    <nav class="nav-glass" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-dot w3-bounce"></span>
+                <span class="logo-text">JUAN<span class="logo-accent">JOSE</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="proceso.html">Proceso</a></li>
+                <li><a href="sobre-mi.html">Sobre Mí</a></li>
+                <li><a href="presupuesto.html">Presupuesto</a></li>
+                <li><a href="contacto.html" class="active nav-cta">Contactar</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Menú"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Contacto</span>
+                <h1 class="section-title">¿Hablamos de tu <span class="gradient-text">proyecto</span>?</h1>
+                <p class="section-desc">Estoy disponible para resolver tus dudas y darte un presupuesto sin compromiso. Diagnóstico gratuito en 24h.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Contacto</span>
+                <h2 class="section-title">¿Tienes un <span class="gradient-text">proyecto</span>?</h2>
+                <p class="section-desc">Me encantaría escuchar sobre él. Envíame un mensaje y te responderé lo antes posible.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                        <div><span class="info-label">Email</span><a href="mailto:juanjosejuradosantos@gmail.com" class="info-value">juanjosejuradosantos@gmail.com</a></div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                        <div><span class="info-label">Teléfono</span><a href="tel:+34643442983" class="info-value">+34 643 44 29 83</a></div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                        <div><span class="info-label">Ubicación</span><span class="info-value">Montoro, Córdoba</span></div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <!-- Información Personal -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder=" " required>
+                            <label for="name">Nombre completo *</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder=" " required>
+                            <label for="email">Correo electrónico *</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder=" ">
+                            <label for="phone">Teléfono</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" id="appointment" name="appointment" placeholder=" ">
+                            <label for="appointment">Fecha preferida (opcional)</label>
+                        </div>
+                    </div>
+
+                    <!-- Tipo de Servicio -->
+                    <div class="form-group">
+                        <select id="serviceType" name="serviceType" required>
+                            <option value="">Selecciona tipo de servicio *</option>
+                            <option value="reparacion">🛠️ Reparación PC/Laptop</option>
+                            <option value="montaje">💻 Montaje Hardware</option>
+                            <option value="software">⚙️ Instalación Windows/Linux</option>
+                            <option value="virus">🦠 Eliminación de Virus</option>
+                            <option value="datos">💾 Recuperación de Datos</option>
+                            <option value="mantenimiento">🔧 Mantenimiento Preventivo</option>
+                            <option value="consultoria">💡 Consultoría Técnica</option>
+                            <option value="otro">❓ Otro servicio</option>
+                        </select>
+                    </div>
+
+                    <!-- Urgencia (Radio Buttons) -->
+                    <div class="form-group">
+                        <label class="form-label">¿Cuál es la urgencia del servicio? *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="urgency" value="normal" checked>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">Normal (1-3 días)</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="urgency" value="urgent">
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">Urgente (24 horas)</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="urgency" value="emergency">
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">Emergencia (mismo día)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Servicios Adicionales (Checkboxes) -->
+                    <div class="form-group">
+                        <label class="form-label">Servicios adicionales necesarios:</label>
+                        <div class="checkbox-group-grid">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="additional[]" value="diagnostico">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">Diagnóstico completo</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="additional[]" value="limpieza">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">Limpieza interna</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="additional[]" value="backup">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">Copia de seguridad</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="additional[]" value="optimizacion">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">Optimización sistema</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="additional[]" value="antivirus">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">Instalación antivirus</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="additional[]" value="otros">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">Otros servicios</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Mensaje -->
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+                        <label for="message">Describe tu problema o proyecto *</label>
+                        <small class="form-help">Incluye detalles como marca/modelo del equipo, síntomas, etc.</small>
+                    </div>
+
+                    <!-- Archivos Adjuntos -->
+                    <div class="form-group">
+                        <label class="form-label" for="files">Adjuntar archivos (opcional):</label>
+                        <input type="file" id="files" name="files" multiple accept=".jpg,.jpeg,.png,.pdf,.txt" class="file-input">
+                        <small class="form-help">Puedes subir fotos del problema o documentos relacionados (máx. 5MB por archivo)</small>
+                    </div>
+
+                    <!-- Preferencia de Contacto -->
+                    <div class="form-group">
+                        <label class="form-label">Preferencia de contacto:</label>
+                        <div class="radio-group horizontal">
+                            <label class="radio-label">
+                                <input type="radio" name="contactPref" value="email" checked>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">Email</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="contactPref" value="phone">
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">Teléfono</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="contactPref" value="whatsapp">
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">WhatsApp</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Política de Privacidad -->
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="privacy" required>
+                            <span class="checkmark"></span>
+                            <span class="checkbox-text">Acepto la <a href="#" class="privacy-link">política de privacidad</a> y autorizo el tratamiento de mis datos para gestionar mi consulta. *</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="newsletter">
+                            <span class="checkmark"></span>
+                            <span class="checkbox-text">Quiero recibir consejos y ofertas especiales sobre mantenimiento informático.</span>
+                        </label>
+                    </div>
+
+                    <!-- Botón de Envío -->
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span id="btnText">Enviar solicitud de presupuesto</span>
+                        <svg id="btnIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                        <div class="spinner" id="btnSpinner"></div>
+                    </button>
+                    <p class="form-note">🔒 Todos los campos marcados con * son obligatorios. Tus datos están protegidos según el RGPD.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Quick Contact -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <h2>¿Prefieres un mensaje rápido?</h2>
+                <p>Escríbeme por WhatsApp y te respondo en minutos.</p>
+                <a href="https://wa.me/34643442983?text=Hola%20Juanjo,%20vi%20tu%20web%20y%20quiero%20más%20información." class="btn btn-primary" target="_blank">
+                    <span>WhatsApp</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+
+    <div class="toast" id="toast"><div class="toast-icon">✓</div><div class="toast-message" id="toastMessage">Mensaje enviado correctamente</div></div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo"><span class="logo-dot"></span><span class="logo-text">JUAN<span class="logo-accent">JOSE</span></span></a>
+                    <p>Servicios informáticos profesionales con más de 3 años de experiencia. Especializado en reparación de equipos, montaje de hardware y soluciones tecnológicas.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="servicios.html">Reparación PC</a></li>
+                        <li><a href="servicios.html">Montaje Hardware</a></li>
+                        <li><a href="servicios.html">Instalación SO</a></li>
+                        <li><a href="servicios.html">Mantenimiento</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="sobre-mi.html">Sobre mí</a></li>
+                        <li><a href="proceso.html">Proceso</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Política de privacidad</a></li>
+                        <li><a href="#">Términos de servicio</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 JUANJOSE — Servicios Informáticos Profesionales. Todos los derechos reservados.</p>
+                <div class="footer-social">
+                    <a href="https://tiktok.com/@juanjo.reparaciones" target="_blank" aria-label="TikTok" class="social-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                        </svg>
+                        TikTok
+                    </a>
+                    <a href="https://wa.me/34643442983" target="_blank" aria-label="WhatsApp" class="social-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                        WhatsApp
+                    </a>
+                    <a href="https://instagram.com/juanjo.reparaciones" target="_blank" aria-label="Instagram" class="social-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                        Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/34643442983?text=Hola%20Juanjo,%20vi%20tu%20web%20y%20necesito..." class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
