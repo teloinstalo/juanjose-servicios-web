@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Versión Corregida</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" style="padding: 40px 20px;">
+        <h1 style="margin-bottom: 30px;">Formulario de Contacto - Versión Corregida</h1>
+        
+        <div id="debugConsole" style="background: #f5f5f5; padding: 15px; margin-bottom: 20px; border-radius: 8px; font-family: monospace;"></div>
+        
+        <form id="contactFormFixed" class="contact-form">
+            <div class="form-group">
+                <label for="nameFixed" class="form-label">Nombre completo *</label>
+                <input type="text" id="nameFixed" name="name" placeholder="Juan José Jurado" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="emailFixed" class="form-label">Email *</label>
+                <input type="email" id="emailFixed" name="email" placeholder="juanjosejuradosantos@gmail.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="messageFixed" class="form-label">Mensaje *</label>
+                <textarea id="messageFixed" name="message" rows="5" placeholder="Describe tu problema o consulta..." required></textarea>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="privacyFixed" name="privacy" required>
+                    <span class="checkmark"></span>
+                    <span class="checkbox-text">Acepto la política de privacidad *</span>
+                </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-full" id="submitBtnFixed">
+                <span id="btnTextFixed">Enviar mensaje</span>
+                <div class="spinner" id="btnSpinnerFixed" style="display: none;"></div>
+            </button>
+        </form>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const debug = document.getElementById('debugConsole');
+            const form = document.getElementById('contactFormFixed');
+            const submitBtn = document.getElementById('submitBtnFixed');
+            const btnText = document.getElementById('btnTextFixed');
+            const btnSpinner = document.getElementById('btnSpinnerFixed');
+            
+            function log(message, type = 'info') {
+                const colors = { info: 'blue', success: 'green', error: 'red', warning: 'orange' };
+                const time = new Date().toLocaleTimeString();
+                debug.innerHTML += `<div style="color: ${colors[type]}; margin: 5px 0;">[${time}] ${message}</div>`;
+                debug.scrollTop = debug.scrollHeight;
+            }
+            
+            log('✅ DOM cargado, iniciando configuración del formulario...', 'success');
+            
+            if (!form) {
+                log('❌ ERROR: Formulario no encontrado', 'error');
+                return;
+            }
+            
+            if (!submitBtn) {
+                log('❌ ERROR: Botón de envío no encontrado', 'error');
+                return;
+            }
+            
+            log('✅ Formulario y botón encontrados correctamente', 'success');
+            
+            // Agregar evento de clic directo al botón
+            submitBtn.addEventListener('click', (e) => {
+                log('🖱️ Evento CLICK capturado en el botón', 'info');
+            });
+            
+            // Evento principal de envío
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                log('📤 Evento SUBMIT capturado en el formulario', 'success');
+                
+                // Obtener valores
+                const name = document.getElementById('nameFixed').value.trim();
+                const email = document.getElementById('emailFixed').value.trim();
+                const message = document.getElementById('messageFixed').value.trim();
+                const privacy = document.getElementById('privacyFixed').checked;
+                
+                log(`📋 Validando datos: Nombre="${name}", Email="${email}", Mensaje="${message ? 'Sí' : 'No'}", Privacidad=${privacy}`, 'info');
+                
+                // Validaciones
+                const errors = [];
+                if (!name) errors.push('Nombre');
+                if (!email) errors.push('Email');
+                if (!message) errors.push('Mensaje');
+                if (!privacy) errors.push('Aceptar política de privacidad');
+                
+                if (errors.length > 0) {
+                    log(`⚠️ Error: Campos obligatorios faltantes: ${errors.join(', ')}`, 'warning');
+                    return;
+                }
+                
+                // Validar email
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    log('⚠️ Error: Email inválido', 'warning');
+                    return;
+                }
+                
+                log('✅ Validaciones superadas, simulando envío...', 'success');
+                
+                // Cambiar estado del botón
+                btnText.textContent = 'Enviando...';
+                btnSpinner.style.display = 'block';
+                submitBtn.disabled = true;
+                
+                // Simular envío
+                setTimeout(() => {
+                    log('✅ Mensaje enviado correctamente', 'success');
+                    
+                    // Restaurar botón
+                    btnText.textContent = 'Mensaje enviado ✓';
+                    btnSpinner.style.display = 'none';
+                    
+                    // Restablecer formulario después de 2 segundos
+                    setTimeout(() => {
+                        form.reset();
+                        btnText.textContent = 'Enviar mensaje';
+                        submitBtn.disabled = false;
+                        log('🔄 Formulario restablecido', 'info');
+                    }, 2000);
+                }, 1500);
+            });
+            
+            log('✅ Configuración del formulario completada', 'success');
+            log('👉 Prueba a completar el formulario y hacer clic en "Enviar mensaje"', 'info');
+        });
+    </script>
+</body>
+</html>

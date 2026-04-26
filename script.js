@@ -1,8 +1,14 @@
 /* ========================================
-   JUANJOSE - Premium Interactions
-   ======================================== */
+    JUANJOSE - Premium Interactions
+    ======================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+// Manejar errores globales
+window.addEventListener('error', (e) => {
+    console.error('❌ Error global capturado:', e.message, 'en', e.filename, 'línea', e.lineno);
+});
+
+try {
+    document.addEventListener('DOMContentLoaded', () => {
     // ========================================
     // PARTICLE BACKGROUND
     // ========================================
@@ -104,25 +110,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ========================================
-    // MOBILE MENU
+    // TEST: Verificar que el formulario está funcionando
     // ========================================
-    const mobileToggle = document.getElementById('mobileToggle');
-    const navLinks = document.getElementById('navLinks');
-
-    if (mobileToggle && navLinks) {
-        mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-            const spans = mobileToggle.querySelectorAll('span');
-            if (navLinks.classList.contains('open')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
+    console.log('🧪 Iniciando pruebas del formulario...');
+    
+    // Verificar que todos los elementos del formulario existen
+    const testForm = document.getElementById('contactForm');
+    if (testForm) {
+        console.log('✅ Formulario encontrado');
+        
+        // Agregar evento de prueba para verificar clics
+        testForm.addEventListener('click', (e) => {
+            console.log('🖱️ Click detectado en formulario:', e.target.tagName, e.target.className || e.target.id);
         });
+        
+        // Probar si el botón de submit está funcionando
+        const submitBtn = testForm.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            console.log('✅ Botón de submit encontrado');
+            submitBtn.addEventListener('click', (e) => {
+                console.log('🖱️ Click en botón de submit detectado');
+            });
+        } else {
+            console.warn('⚠️ Botón de submit NO encontrado');
+        }
+    } else {
+        console.error('❌ Formulario NO encontrado');
+    }
+    
+    // ========================================
+    // INITIALIZE EVERYTHING
+    // ========================================
+    console.log('✅ JUANJOSE - Premium Interactions loaded');
+    });
+} catch (error) {
+    console.error('❌ Error crítico al cargar las interacciones:', error);
+    console.error('Stack trace:', error.stack);
+}
 
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
@@ -371,13 +395,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ========================================
-    // CONTACT FORM
-    // ========================================
-    const contactForm = document.getElementById('contactForm');
-    const btnText = document.getElementById('btnText');
-    const btnIcon = document.getElementById('btnIcon');
-    const btnSpinner = document.getElementById('btnSpinner');
+// ========================================
+     // CONTACT FORM - VERSIÓN CORREGIDA
+     // ========================================
+     const contactForm = document.getElementById('contactForm');
+     const btnText = document.getElementById('btnText');
+     const btnIcon = document.getElementById('btnIcon');
+     const btnSpinner = document.getElementById('btnSpinner');
+     const submitBtn = document.getElementById('submitBtn');
+     
+     // Debug: Verificar que los elementos existen
+     console.log('📋 Elementos del formulario (VERSIÓN CORREGIDA):');
+     console.log('  • contactForm:', contactForm ? '✅ Encontrado' : '❌ No encontrado');
+     console.log('  • btnText:', btnText ? '✅ Encontrado' : '❌ No encontrado');
+     console.log('  • btnIcon:', btnIcon ? '✅ Encontrado' : '❌ No encontrado');
+     console.log('  • btnSpinner:', btnSpinner ? '✅ Encontrado' : '❌ No encontrado');
+     console.log('  • submitBtn (NUEVO):', submitBtn ? '✅ Encontrado' : '❌ No encontrado');
 
     // Función para marcar campos con error
     function markFieldError(fieldId, isValid) {
@@ -395,109 +428,142 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Validación en tiempo real para email
-    const emailField = document.getElementById('email');
-    if (emailField) {
-        emailField.addEventListener('blur', function() {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const isValid = emailRegex.test(this.value.trim());
-            markFieldError('email', isValid || this.value.trim() === '');
-        });
-    }
+     // Validación en tiempo real para email
+     const emailField = document.getElementById('email');
+     if (emailField) {
+         emailField.addEventListener('blur', function() {
+             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+             const isValid = emailRegex.test(this.value.trim());
+             markFieldError('email', isValid || this.value.trim() === '');
+         });
+     }
 
-    // Validación en tiempo real para campos obligatorios
-    const requiredFields = ['name', 'serviceType', 'message'];
-    requiredFields.forEach(fieldId => {
-        const field = document.getElementById(fieldId);
-        if (field) {
-            field.addEventListener('blur', function() {
-                const isValid = this.value.trim() !== '';
-                markFieldError(fieldId, isValid);
-            });
-        }
-    });
+     // Validación en tiempo real para campos obligatorios
+     const requiredFields = ['name', 'serviceType', 'message'];
+     requiredFields.forEach(fieldId => {
+         const field = document.getElementById(fieldId);
+         if (field) {
+             field.addEventListener('blur', function() {
+                 const isValid = this.value.trim() !== '';
+                 markFieldError(fieldId, isValid);
+             });
+             
+             // También validar al escribir
+             field.addEventListener('input', function() {
+                 const isValid = this.value.trim() !== '';
+                 markFieldError(fieldId, isValid);
+             });
+         } else {
+             console.warn(`⚠️ Campo obligatorio no encontrado: ${fieldId}`);
+         }
+     });
 
-    if (contactForm && btnText && btnIcon && btnSpinner) {
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+// Configurar el formulario de contacto - VERSIÓN SIMPLIFICADA
+     if (contactForm) {
+         console.log('✅ Formulario encontrado - Configurando eventos SIMPLIFICADOS...');
+         
+         // Obtener botón de submit (usar ID si existe, si no usar selector)
+         let submitButton = submitBtn;
+         if (!submitButton) {
+             submitButton = contactForm.querySelector('button[type="submit"]');
+             if (submitButton) {
+                 console.log('✅ Botón encontrado por selector');
+                 submitButton.id = 'submitBtnDynamic';
+             }
+         }
+         
+         // Agregar evento de submit al formulario (esta es la forma correcta)
+         contactForm.addEventListener('submit', async function(e) {
+             e.preventDefault();
+             console.log('📤 FORMULARIO ENVIADO - VERSIÓN SIMPLIFICADA');
+             
+             // Validar que tenemos botón
+             if (!submitButton) {
+                 submitButton = this.querySelector('button[type="submit"]');
+             }
+             
+             // Validar campos básicos
+             const name = document.getElementById('name');
+             const email = document.getElementById('email');
+             const serviceType = document.getElementById('serviceType');
+             const message = document.getElementById('message');
+             const privacy = document.querySelector('input[name="privacy"]');
+             
+             if (!name || !email || !serviceType || !message || !privacy) {
+                 showToast('Error: Campos del formulario no encontrados');
+                 return;
+             }
+             
+             const nameVal = name.value.trim();
+             const emailVal = email.value.trim();
+             const serviceTypeVal = serviceType.value;
+             const messageVal = message.value.trim();
+             const privacyAccepted = privacy.checked;
+             
+             // Validaciones
+             if (!nameVal || !emailVal || !serviceTypeVal || !messageVal || !privacyAccepted) {
+                 showToast('Por favor completa todos los campos obligatorios (*)');
+                 return;
+             }
+             
+             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+                 showToast('Por favor ingresa un email válido');
+                 return;
+             }
+             
+             // Cambiar estado del botón si tenemos referencias
+             if (btnText && btnIcon && btnSpinner && submitButton) {
+                 btnText.textContent = 'Enviando...';
+                 btnIcon.style.display = 'none';
+                 btnSpinner.style.display = 'block';
+                 submitButton.disabled = true;
+             } else if (submitButton) {
+                 // Versión mínima si no tenemos los elementos adicionales
+                 submitButton.textContent = 'Enviando...';
+                 submitButton.disabled = true;
+             }
+             
+             // Simular envío
+             await new Promise(resolve => setTimeout(resolve, 1500));
+             
+             // Mostrar éxito
+             showToast('¡Solicitud enviada correctamente!');
+             
+             // Restaurar botón
+             if (btnText && btnIcon && btnSpinner && submitButton) {
+                 btnText.textContent = '¡Enviado! ✓';
+                 btnSpinner.style.display = 'none';
+                 btnIcon.style.display = 'block';
+                 btnIcon.innerHTML = '<path d="M20 6L9 17l-5-5"/>';
+                 
+                 setTimeout(() => {
+                     btnText.textContent = 'Enviar solicitud de presupuesto';
+                     btnIcon.innerHTML = '<path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>';
+                     submitButton.disabled = false;
+                 }, 2000);
+             } else if (submitButton) {
+                 submitButton.textContent = '¡Enviado!';
+                 setTimeout(() => {
+                     submitButton.textContent = 'Enviar solicitud de presupuesto';
+                     submitButton.disabled = false;
+                 }, 2000);
+             }
+             
+             // Restablecer formulario
+             try {
+                 this.reset();
+                 console.log('✅ Formulario restablecido');
+             } catch (err) {
+                 console.error('Error al restablecer:', err);
+             }
+         });
+         
+         console.log('✅ Evento submit configurado correctamente');
+     } else {
+         console.warn('⚠️ Formulario de contacto no encontrado en esta página');
+     }
+         
 
-            // Obtener valores de los campos
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const appointment = document.getElementById('appointment').value;
-            const serviceType = document.getElementById('serviceType').value;
-            const message = document.getElementById('message').value.trim();
-            
-            // Obtener urgencia seleccionada
-            const urgency = document.querySelector('input[name="urgency"]:checked')?.value || 'normal';
-            
-            // Obtener servicios adicionales seleccionados
-            const additionalServices = Array.from(document.querySelectorAll('input[name="additional[]"]:checked'))
-                .map(cb => cb.value);
-            
-            // Obtener preferencia de contacto
-            const contactPref = document.querySelector('input[name="contactPref"]:checked')?.value || 'email';
-            
-            // Verificar checkbox de privacidad
-            const privacyAccepted = document.querySelector('input[name="privacy"]')?.checked;
-
-            // Validaciones básicas
-            if (!name || !email || !serviceType || !message || !privacyAccepted) {
-                showToast('Por favor completa todos los campos obligatorios (*)');
-                return;
-            }
-
-            // Validación de email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                showToast('Por favor ingresa un email válido');
-                return;
-            }
-
-            // Cambiar estado del botón
-            btnText.textContent = 'Enviando...';
-            btnIcon.style.display = 'none';
-            btnSpinner.style.display = 'block';
-            contactForm.querySelector('button[type="submit"]').disabled = true;
-
-            // Simular envío (en un caso real aquí iría una petición fetch)
-            await new Promise(resolve => setTimeout(resolve, 1500));
-
-            // Mostrar mensaje de éxito
-            btnText.textContent = '¡Solicitud enviada!';
-            btnSpinner.style.display = 'none';
-            btnIcon.style.display = 'block';
-            btnIcon.innerHTML = '<path d="M20 6L9 17l-5-5"/>';
-
-            // Mostrar resumen en consola (en producción se enviaría al servidor)
-            console.log('📋 Solicitud de presupuesto recibida:');
-            console.log('👤 Nombre:', name);
-            console.log('📧 Email:', email);
-            console.log('📞 Teléfono:', phone || 'No proporcionado');
-            console.log('📅 Fecha preferida:', appointment || 'Sin fecha específica');
-            console.log('🔧 Servicio:', serviceType);
-            console.log('🚨 Urgencia:', urgency);
-            console.log('➕ Servicios adicionales:', additionalServices.length > 0 ? additionalServices.join(', ') : 'Ninguno');
-            console.log('📱 Preferencia contacto:', contactPref);
-            console.log('💬 Mensaje:', message.substring(0, 100) + (message.length > 100 ? '...' : ''));
-
-            showToast('Solicitud enviada correctamente. Te contactaré en menos de 24h.');
-            
-            // Restablecer formulario (excepto checkbox de newsletter si estaba marcado)
-            const newsletterChecked = document.querySelector('input[name="newsletter"]')?.checked;
-            contactForm.reset();
-            if (newsletterChecked) {
-                document.querySelector('input[name="newsletter"]').checked = true;
-            }
-
-            // Restaurar botón después de 3 segundos
-            setTimeout(() => {
-                btnText.textContent = 'Enviar solicitud de presupuesto';
-                btnIcon.innerHTML = '<path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>';
-                contactForm.querySelector('button[type="submit"]').disabled = false;
-            }, 3000);
-        });
     }
 
     // ========================================

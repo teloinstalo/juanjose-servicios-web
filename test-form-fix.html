@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Form Fix</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, select, textarea { width: 100%; padding: 8px; margin-bottom: 10px; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        button:disabled { background: #ccc; }
+        .error { border-color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Test del Formulario de Contacto</h1>
+    
+    <div id="debug"></div>
+    
+    <form id="contactFormTest">
+        <div class="form-group">
+            <label for="nameTest">Nombre *</label>
+            <input type="text" id="nameTest" name="name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="emailTest">Email *</label>
+            <input type="email" id="emailTest" name="email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="messageTest">Mensaje *</label>
+            <textarea id="messageTest" name="message" rows="4" required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label>
+                <input type="checkbox" name="privacyTest" required>
+                Acepto la política de privacidad *
+            </label>
+        </div>
+        
+        <button type="submit">Enviar Test</button>
+    </form>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const debug = document.getElementById('debug');
+            const form = document.getElementById('contactFormTest');
+            
+            if (!form) {
+                debug.innerHTML = '<p style="color: red;">❌ Formulario NO encontrado</p>';
+                return;
+            }
+            
+            debug.innerHTML = '<p style="color: green;">✅ Formulario encontrado</p>';
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                debug.innerHTML += '<p style="color: blue;">🖱️ Evento submit capturado</p>';
+                
+                // Validación simple
+                const name = document.getElementById('nameTest').value.trim();
+                const email = document.getElementById('emailTest').value.trim();
+                const message = document.getElementById('messageTest').value.trim();
+                const privacy = document.querySelector('input[name="privacyTest"]').checked;
+                
+                if (!name || !email || !message || !privacy) {
+                    debug.innerHTML += '<p style="color: orange;">⚠️ Campos obligatorios faltantes</p>';
+                    return;
+                }
+                
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    debug.innerHTML += '<p style="color: orange;">⚠️ Email inválido</p>';
+                    return;
+                }
+                
+                debug.innerHTML += '<p style="color: green;">✅ Formulario válido - Simulando envío...</p>';
+                
+                // Simular envío
+                const btn = form.querySelector('button[type="submit"]');
+                btn.disabled = true;
+                btn.textContent = 'Enviando...';
+                
+                setTimeout(() => {
+                    debug.innerHTML += '<p style="color: green;">✅ Formulario enviado correctamente</p>';
+                    btn.disabled = false;
+                    btn.textContent = 'Enviar Test';
+                    form.reset();
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
