@@ -1,24 +1,27 @@
 /* ========================================
-    JUANJOSE - Premium Interactions
+    JUANJOSE - Interacciones Premium
     ======================================== */
 
-// Manejar errores globales
+// Control de errores global - por si algo petardea
 window.addEventListener('error', (e) => {
-    console.error('❌ Error global capturado:', e.message, 'en', e.filename, 'línea', e.lineno);
+    console.error('❌ Petada detectada:', e.message, 'en', e.filename, 'línea', e.lineno);
 });
 
+// Esperamos a que el DOM esté listo, que si no hay Pseudopol
 document.addEventListener('DOMContentLoaded', () => {
     try {
         // ========================================
-        // PARTICLE BACKGROUND
+        // FONDO DE PARTÍCULAS (que queda chulo)
         // ========================================
         const canvas = document.getElementById('particleCanvas');
         let ctx, particles = [], animationId, isDark;
 
         if (canvas) {
             ctx = canvas.getContext('2d');
+            // Miramos si está en modo oscuro o no
             isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 
+            // Ajustamos el tamaño del canvas al viewport
             function resizeCanvas() {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
@@ -26,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             resizeCanvas();
             window.addEventListener('resize', resizeCanvas);
 
+            // Clase para cada partícula - básicamente puntos que se mueven
             class Particle {
                 constructor() { this.reset(); }
                 reset() {
@@ -37,16 +41,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     this.opacity = Math.random() * 0.5 + 0.1;
                 }
                 update() {
+                    // Movimiento aleatorio
                     this.x += this.speedX;
                     this.y += this.speedY;
                     
+                    // Rebote en los bordes (que no se escapen)
                     if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
                     if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
                     
+                    // Cada tanto reseteamos una partícula (para que no sea siempre lo mismo)
                     if (Math.random() < 0.005) this.reset();
                 }
                 draw() {
                     ctx.globalAlpha = this.opacity;
+                    // Blanco para modo oscuro, azul para claro
                     ctx.fillStyle = isDark ? 'rgba(255,255,255,0.8)' : 'rgba(99,102,241,0.8)';
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -54,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
+            // Creamos 50 partículas para que el fondo no se vea vacío
             function initParticles() {
                 particles = [];
                 for (let i = 0; i < 50; i++) {
@@ -62,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             initParticles();
 
+            // Función que anima todo (el bucle principal)
             function animateParticles() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 
@@ -70,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     particle.draw();
                 });
                 
-                // Connect particles
+                // Conectamos las partículas cercanas (queda pro)
                 ctx.globalAlpha = 0.2;
                 ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.3)' : 'rgba(99,102,241,0.3)';
                 ctx.lineWidth = 0.5;
@@ -81,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const dy = particles[i].y - particles[j].y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
                         
+                        // Si están cerca, las unimos con una línea
                         if (distance < 100) {
                             ctx.beginPath();
                             ctx.moveTo(particles[i].x, particles[i].y);
@@ -93,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 animationId = requestAnimationFrame(animateParticles);
             }
 
+            // Solo animamos si el canvas está visible (para no gastar recursos tontamente)
             const particleObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -106,10 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ========================================
-        // THEME SWITCHER
+        // CAMBIO DE TEMA (CLARO/OSCURO)
         // ========================================
         const themeSwitch = document.getElementById('themeSwitch');
         if (themeSwitch) {
+            // Recuperamos lo que guardó el tío en localStorage
             const savedTheme = localStorage.getItem('theme') || 'light';
             
             if (savedTheme === 'dark') {
@@ -122,8 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
                 
+                // Si hay canvas, actualizamos los colores de las partículas
                 if (canvas) {
-                    // Update particle colors when theme changes
                     isDark = document.documentElement.getAttribute('data-theme') === 'dark';
                     if (animationId) {
                         cancelAnimationFrame(animationId);
@@ -134,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ========================================
-        // MOBILE MENU
+        // MENÚ MÓVIL (el típico botón hamburguesa)
         // ========================================
         const mobileToggle = document.querySelector('.mobile-toggle');
         const navLinks = document.querySelector('.nav-links');
@@ -144,18 +157,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 navLinks.classList.toggle('open');
                 const spans = mobileToggle.querySelectorAll('span');
                 
+                // Animamos las rayitas del botón hamburguesa a una X
                 if (navLinks.classList.contains('open')) {
                     spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
                     spans[1].style.opacity = '0';
                     spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
                 } else {
+                    // Volvemos a la normalidad
                     spans[0].style.transform = 'none';
                     spans[1].style.opacity = '1';
                     spans[2].style.transform = 'none';
                 }
             });
 
-            // Close menu when clicking links
+            // Cerramos el menú al hacer clic en un enlace (comportamiento normal)
             navLinks.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
                     navLinks.classList.remove('open');
@@ -168,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ========================================
-        // SMOOTH SCROLLING
+        // SCROLL SUAVE (para los enlaces internos)
         // ========================================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -184,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // ========================================
-        // FORM VALIDATION
+        // VALIDACIÓN DEL FORMULARIO DE CONTACTO
         // ========================================
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
@@ -195,10 +210,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const submitBtn = contactForm.querySelector('button[type="submit"]');
                 const originalText = submitBtn.textContent;
                 
+                // Desactivamos el botón para que no le den mil veces
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Enviando...';
                 
                 try {
+                    // Mandamos el formulario a Formspree (servicio gratuito)
                     const response = await fetch('https://formspree.io/f/xdoqyjbg', {
                         method: 'POST',
                         body: formData,
@@ -217,12 +234,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     showToast('❌ Error al enviar el mensaje');
                     console.error('Error:', error);
                 } finally {
+                    // Reactivamos el botón pase lo que pase
                     submitBtn.disabled = false;
                     submitBtn.textContent = originalText;
                 }
             });
         }
 
+        // Función para mostrar toasts (esos mensajitos que aparecen y desaparecen)
         function showToast(message) {
             const toast = document.createElement('div');
             toast.className = 'toast';
@@ -241,6 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             document.body.appendChild(toast);
             
+            // Lo quitamos después de 3 segundos
             setTimeout(() => {
                 toast.style.animation = 'slideOut 0.3s ease';
                 setTimeout(() => toast.remove(), 300);
@@ -248,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ========================================
-        // ANIMATED COUNTERS
+        // CONTADORES ANIMADOS (los números que suben)
         // ========================================
         const statItems = document.querySelectorAll('.stat-item');
 
@@ -267,13 +287,15 @@ document.addEventListener('DOMContentLoaded', () => {
             statItems.forEach(item => counterObserver.observe(item));
         }
 
+        // Animación para los números (va subiendo poco a poco)
         function animateCounter(el, target) {
-            const duration = 2000;
+            const duration = 2000; // 2 segundos
             const startTime = performance.now();
 
             function update(currentTime) {
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
+                // Efecto easeOutQuart para que vaya más rápido al principio
                 const easeOutQuart = 1 - Math.pow(1 - progress, 4);
                 const current = Math.floor(easeOutQuart * target);
                 el.textContent = current + (target >= 100 ? '+' : '');
@@ -284,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ========================================
-        // PROCESS TIMELINE ANIMATION
+        // ANIMACIÓN DE LA LÍNEA DE TIEMPO (PROCESO)
         // ========================================
         const timelineProgress = document.querySelector('.timeline-progress');
         const steps = document.querySelectorAll('.step');
@@ -294,7 +316,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const timelineObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        // Animamos la barra de progreso
                         setTimeout(() => { timelineProgress.style.width = '100%'; }, 300);
+                        // Los pasos aparecen uno detrás de otro
                         steps.forEach((step, i) => {
                             setTimeout(() => { step.classList.add('visible'); }, 300 + (i * 200));
                         });
@@ -306,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ========================================
-        // PRICE CALCULATOR
+        // CALCULADORA DE PRESUPUESTOS (LO IMPORTANTE)
         // ========================================
         const calcCheckboxes = document.querySelectorAll('.calc-option input[type="checkbox"]');
         const urgencyRadios = document.querySelectorAll('input[name="urgency"]');
@@ -317,6 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let total = 0;
             let urgencyFee = 0;
             
+            // Función para actualizar la tarifa de urgencia
             function updateUrgencyFee() {
                 const selectedUrgency = document.querySelector('input[name="urgency"]:checked');
                 if (selectedUrgency) {
@@ -325,23 +350,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateTotal();
             }
             
+            // Función principal que actualiza el total
             function updateTotal() {
                 total = 0;
+                // Sumamos los servicios marcados
                 calcCheckboxes.forEach(checkbox => {
                     if (checkbox.checked) {
                         total += parseInt(checkbox.dataset.price);
                     }
                 });
                 
+                // Miramos qué nivel de urgencia ha elegido el cliente
                 const selectedUrgency = document.querySelector('input[name="urgency"]:checked');
                 if (selectedUrgency) {
                     urgencyFee = parseInt(selectedUrgency.value) || 0;
                 }
                 
+                // Total final sumando urgencia
                 const totalWithUrgency = total + urgencyFee;
                 totalElement.textContent = totalWithUrgency + '€';
                 
-                // Show urgency fee breakdown if not normal
+                // Si hay urgencia, mostramos el desglose
                 if (urgencyFee > 0 && total > 0) {
                     const breakdown = document.getElementById('urgencyBreakdown');
                     if (!breakdown) {
@@ -354,41 +383,47 @@ document.addEventListener('DOMContentLoaded', () => {
                         breakdown.innerHTML = `<small>Servicios: ${total}€ + Urgencia: +${urgencyFee}€ = ${totalWithUrgency}€</small>`;
                     }
                 } else {
+                    // Si no hay urgencia o no hay servicios, quitamos el desglose
                     const breakdown = document.getElementById('urgencyBreakdown');
                     if (breakdown) breakdown.remove();
                 }
                 
-                // Update budget button URL
+                // Actualizamos el enlace para pedir presupuesto
                 const selectedServices = Array.from(calcCheckboxes)
                     .filter(cb => cb.checked)
                     .map(cb => cb.dataset.name)
                     .join(', ');
                 
+                // Determinamos el nivel de urgencia para el enlace
                 const urgencyLevel = selectedUrgency ? 
                     (urgencyFee === 15 ? 'urgent' : urgencyFee === 30 ? 'emergency' : 'normal') : 'normal';
                 
                 btnBudget.href = `contacto.html?presupuesto=${encodeURIComponent(selectedServices)}&total=${totalWithUrgency}&urgency=${urgencyLevel}`;
             }
 
+            // Escuchamos cambios en los checkboxes de servicios
             calcCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', updateTotal);
             });
             
+            // Y también en los radios de urgencia
             if (urgencyRadios.length) {
                 urgencyRadios.forEach(radio => {
                     radio.addEventListener('change', updateTotal);
                 });
             }
 
-            // Add/remove service buttons
+            // Botones de "Añadir al presupuesto" (los que están en las tarjetas)
             document.querySelectorAll('.add-service-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const serviceId = btn.dataset.service;
+                    // Buscamos el checkbox correspondiente a este servicio
                     const checkbox = Array.from(calcCheckboxes).find(cb => 
                         cb.parentElement.querySelector('.service-name')?.textContent.includes(serviceId)
                     );
                     
                     if (checkbox) {
+                        // Marcamos o desmarcamos el checkbox
                         checkbox.checked = !checkbox.checked;
                         btn.textContent = checkbox.checked ? '✓ Añadido' : 'Añadir al presupuesto';
                         btn.classList.toggle('added', checkbox.checked);
@@ -398,11 +433,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            updateTotal(); // Initial calculation
+            // Cálculo inicial (por si acaso)
+            updateTotal();
         }
 
         // ========================================
-        // LAZY LOADING IMAGES
+        // LAZY LOADING DE IMÁGENES (para que cargue más rápido)
         // ========================================
         const lazyImages = document.querySelectorAll('img[data-src]');
         
@@ -422,7 +458,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ========================================
-        // HEADER SCROLL EFFECT
+        // EFECTO SCROLL EN EL HEADER (que se ponga chulo al bajar)
         // ========================================
         const navbar = document.getElementById('navbar');
         if (navbar) {
@@ -434,7 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ========================================
-        // TESTIMONIALS CAROUSEL
+        // CARRUSEL DE TESTIMONIOS (opiniones de clientes)
         // ========================================
         const testimonialWrapper = document.querySelector('.testimonial-wrapper');
         const testimonials = document.querySelectorAll('.testimonial');
@@ -446,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 testimonialWrapper.style.transform = `translateX(-${index * 100}%)`;
             }
             
-            // Auto-rotate testimonials
+            // Cambiamos de testimonio cada 5 segundos
             setInterval(() => {
                 currentIndex = (currentIndex + 1) % testimonials.length;
                 showTestimonial(currentIndex);
@@ -454,7 +490,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ========================================
-        // SERVICE CARDS HOVER EFFECT
+        // EFECTO HOVER EN LAS TARJETAS DE SERVICIOS
         // ========================================
         const serviceCards = document.querySelectorAll('.service-card');
         serviceCards.forEach(card => {
@@ -470,9 +506,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // ========================================
-        // INITIALIZE EVERYTHING
+        // TODO LISTO - SCRIPT CARGADO
         // ========================================
-        console.log('✅ JUANJOSE - Premium Interactions loaded');
+        console.log('✅ JUANJOSE - Todas las interacciones cargadas y funcionando');
 
     } catch (error) {
         console.error('❌ Error crítico al cargar las interacciones:', error);
