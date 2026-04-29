@@ -142,12 +142,12 @@ try {
     // INITIALIZE EVERYTHING
     // ========================================
     console.log('✅ JUANJOSE - Premium Interactions loaded');
-    });
-} catch (error) {
-    console.error('❌ Error crítico al cargar las interacciones:', error);
-    console.error('Stack trace:', error.stack);
-}
 
+    // Mobile menu click handlers (moved inside DOMContentLoaded)
+    const navLinks = document.querySelector('.nav-links');
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    
+    if (navLinks && mobileToggle) {
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('open');
@@ -157,6 +157,8 @@ try {
                 spans[2].style.transform = 'none';
             });
         });
+    }
+});
     }
 
     // ========================================
