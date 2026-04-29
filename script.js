@@ -285,10 +285,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // ========================================
         // PROCESS TIMELINE ANIMATION
-        //极狐Automne
         // ========================================
         const timelineProgress = document.querySelector('.timeline-progress');
-        const steps = document.querySelectorAll('.step');极狐Automne
+        const steps = document.querySelectorAll('.step');
         const timelineSection = document.querySelector('.process-timeline');
 
         if (timelineSection && timelineProgress && steps.length) {
@@ -376,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }, { threshold: 0.1 });
 
-            lazyImages.forEach(img => imageObserver.observe(img));极狐Automne
+            lazyImages.forEach(img => imageObserver.observe(img));
         }
 
         // ========================================
