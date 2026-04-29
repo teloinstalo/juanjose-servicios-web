@@ -309,11 +309,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // PRICE CALCULATOR
         // ========================================
         const calcCheckboxes = document.querySelectorAll('.calc-option input[type="checkbox"]');
+        const urgencyRadios = document.querySelectorAll('input[name="urgency"]');
         const totalElement = document.getElementById('totalPrice');
         const btnBudget = document.getElementById('btnBudget');
 
         if (calcCheckboxes.length && totalElement && btnBudget) {
             let total = 0;
+            let urgencyFee = 0;
+            
+            function updateUrgencyFee() {
+                const selectedUrgency = document.querySelector('input[name="urgency"]:checked');
+                if (selectedUrgency) {
+                    urgencyFee = parseInt(selectedUrgency.value) || 0;
+                }
+                updateTotal();
+            }
             
             function updateTotal() {
                 total = 0;
@@ -322,7 +332,31 @@ document.addEventListener('DOMContentLoaded', () => {
                         total += parseInt(checkbox.dataset.price);
                     }
                 });
-                totalElement.textContent = total + '€';
+                
+                const selectedUrgency = document.querySelector('input[name="urgency"]:checked');
+                if (selectedUrgency) {
+                    urgencyFee = parseInt(selectedUrgency.value) || 0;
+                }
+                
+                const totalWithUrgency = total + urgencyFee;
+                totalElement.textContent = totalWithUrgency + '€';
+                
+                // Show urgency fee breakdown if not normal
+                if (urgencyFee > 0 && total > 0) {
+                    const breakdown = document.getElementById('urgencyBreakdown');
+                    if (!breakdown) {
+                        const breakdownEl = document.createElement('div');
+                        breakdownEl.id = 'urgencyBreakdown';
+                        breakdownEl.className = 'urgency-fee-breakdown';
+                        breakdownEl.innerHTML = `<small>Servicios: ${total}€ + Urgencia: +${urgencyFee}€ = ${totalWithUrgency}€</small>`;
+                        totalElement.parentElement.appendChild(breakdownEl);
+                    } else {
+                        breakdown.innerHTML = `<small>Servicios: ${total}€ + Urgencia: +${urgencyFee}€ = ${totalWithUrgency}€</small>`;
+                    }
+                } else {
+                    const breakdown = document.getElementById('urgencyBreakdown');
+                    if (breakdown) breakdown.remove();
+                }
                 
                 // Update budget button URL
                 const selectedServices = Array.from(calcCheckboxes)
@@ -330,12 +364,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     .map(cb => cb.dataset.name)
                     .join(', ');
                 
-                btnBudget.href = `contacto.html?presupuesto=${encodeURIComponent(selectedServices)}&total=${total}`;
+                const urgencyLevel = selectedUrgency ? 
+                    (urgencyFee === 15 ? 'urgent' : urgencyFee === 30 ? 'emergency' : 'normal') : 'normal';
+                
+                btnBudget.href = `contacto.html?presupuesto=${encodeURIComponent(selectedServices)}&total=${totalWithUrgency}&urgency=${urgencyLevel}`;
             }
 
             calcCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', updateTotal);
             });
+            
+            if (urgencyRadios.length) {
+                urgencyRadios.forEach(radio => {
+                    radio.addEventListener('change', updateTotal);
+                });
+            }
 
             // Add/remove service buttons
             document.querySelectorAll('.add-service-btn').forEach(btn => {

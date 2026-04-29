@@ -1279,6 +1279,18 @@ section {
     background: var(--gradient-soft);
 }
 
+.urgency-fee-breakdown {
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-align: right;
+}
+
+.urgency-fee-breakdown small {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
 /* ========================================
    CONTACT
    ======================================== */
