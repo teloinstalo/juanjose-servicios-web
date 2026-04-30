@@ -1135,7 +1135,7 @@ section {
 .checkmark {
     width: 22px;
     height: 22px;
-    border: 2px solid var(--border);
+    border: 2px solid #aaa;
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -1143,23 +1143,48 @@ section {
     transition: var(--transition);
     flex-shrink: 0;
     position: relative;
+    background: var(--bg-secondary);
 }
 
 .checkmark::after {
     content: '';
-    width: 10px;
-    height: 10px;
-    background: var(--gradient);
-    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transform: scale(0);
     transition: transform 0.2s ease;
 }
 
+.checkbox-label:hover .checkmark {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
+}
+
+.checkbox-label input:checked ~ .checkmark {
+    border-color: var(--accent);
+    background: var(--accent);
+}
+
+.checkbox-label input:checked ~ .checkmark::after {
+    content: '✓';
+    transform: scale(1);
+}
+
+.checkbox-label:hover .checkmark {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
+}
+
 .calc-option input:checked ~ .checkmark {
     border-color: var(--accent);
+    background: var(--accent);
 }
 
 .calc-option input:checked ~ .checkmark::after {
+    content: '✓';
     transform: scale(1);
 }
 
@@ -1484,6 +1509,13 @@ section {
 .checkbox-label input:checked ~ .checkmark::after {
     transform: scale(1);
     background: white;
+    content: '✓';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 0;
 }
 
 /* Clase adicional para cuando JS actualiza el estado */
@@ -1493,8 +1525,8 @@ section {
 }
 
 .checkmark.checked::after {
+    content: '✓';
     transform: scale(1);
-    background: white;
 }
 
 .checkbox-label a {
@@ -1550,15 +1582,22 @@ section {
 .radio-custom {
     width: 18px;
     height: 18px;
-    border: 2px solid var(--border);
+    border: 2px solid #aaa;
     border-radius: 50%;
     position: relative;
     transition: var(--transition);
     flex-shrink: 0;
+    background: var(--bg-secondary);
+}
+
+.radio-label:hover .radio-custom {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
 }
 
 .radio-label input:checked ~ .radio-custom {
     border-color: var(--accent);
+    background: var(--accent);
 }
 
 .radio-label input:checked ~ .radio-custom::after {
@@ -1567,14 +1606,16 @@ section {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 8px;
-    height: 8px;
-    background: var(--accent);
+    width: 10px;
+    height: 10px;
+    background: white;
     border-radius: 50%;
 }
 
 .radio-text {
     font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--text-primary);
 }
 
 /* Checkbox Grid para servicios adicionales */
