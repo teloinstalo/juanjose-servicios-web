@@ -315,7 +315,7 @@ small {
     position: relative;
 }
 
-.nav-links a:hover,
+.nav-links a:hover;
 .nav-links a.active {
     color: var(--accent);
     background: var(--gradient-soft);
@@ -1396,8 +1396,8 @@ section {
     margin-bottom: 10px;
 }
 
-.form-group input,
-.form-group select,
+.form-group input;
+.form-group select;
 .form-group textarea {
     width: 100%;
     padding: 16px;
@@ -1411,15 +1411,15 @@ section {
     outline: none;
 }
 
-.form-group input:focus,
-.form-group select:focus,
+.form-group input:focus;
+.form-group select:focus;
 .form-group textarea:focus {
     border-color: var(--accent);
     box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
 }
 
-.form-group input + label,
-.form-group select + label,
+.form-group input + label;
+.form-group select + label;
 .form-group textarea + label {
     position: absolute;
     left: 16px;
@@ -1438,9 +1438,9 @@ section {
     transform: none;
 }
 
-.form-group input:focus + label,
-.form-group input:not(:placeholder-shown) + label,
-.form-group textarea:focus + label,
+.form-group input:focus + label;
+.form-group input:not(:placeholder-shown) + label;
+.form-group textarea:focus + label;
 .form-group textarea:not(:placeholder-shown) + label {
     top: 0;
     transform: translateY(-50%);
@@ -1688,16 +1688,16 @@ select option[value="otro"] { background-image: none; }
 }
 
 /* Estado de error para validación */
-.form-group.error input,
-.form-group.error select,
-.form-group.error textarea,
+.form-group.error input;
+.form-group.error select;
+.form-group.error textarea;
 .form-group.error .file-input {
     border-color: #ef4444;
     box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
-.form-group.error input:focus,
-.form-group.error select:focus,
+.form-group.error input:focus;
+.form-group.error select:focus;
 .form-group.error textarea:focus {
     border-color: #ef4444;
     box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
@@ -2028,7 +2028,7 @@ select option[value="otro"] { background-image: none; }
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    flex-shrink: 0,
+    flex-shrink: 0;
 }
 
 /* ========================================
@@ -2230,21 +2230,21 @@ select option[value="otro"] { background-image: none; }
 .cta-box h2 {
     font-family: var(--font-heading);
     font-weight: 800;
-    margin-bottom: 12px,
+    margin-bottom: 12px;
     letter-spacing: -0.02em,  /* Un poco más junto */
 }
 
 .cta-box p {
-    color: var(--text-secondary),
-    margin-bottom: 32px,
-    font-size: 1.05rem,
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    font-size: 1.05rem;
 }
 
 /* Botones de la CTA */
 .cta-buttons {
-    display: flex,
-    gap: 16px,
-    justify-content: center,
+    display: flex;
+    gap: 16px;
+    justify-content: center;
     flex-wrap: wrap,  /* Se apilan en móvil */
 }
 
@@ -2256,49 +2256,49 @@ select option[value="otro"] { background-image: none; }
 }
 
 .contact-grid {
-    display: grid,
+    display: grid;
     grid-template-columns: 1fr 1fr,  /* Dos columnas iguales */
-    gap: 60px,
+    gap: 60px;
 }
 
 .contact-form {
-    background: var(--bg-secondary),
-    border: 1px solid var(--border),
-    border-radius: var(--radius),
-    padding: 40px,
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px;
 }
 
 .form-group {
-    margin-bottom: 20px,
+    margin-bottom: 20px;
 }
 
 .form-group label {
-    display: block,
-    font-weight: 600,
-    font-size: 0.9rem,
-    margin-bottom: 8px,
-    color: var(--text-primary),
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    color: var(--text-primary);
 }
 
 /* Inputs y textareas */
-.form-group input,
-.form-group textarea,
+.form-group input;
+.form-group textarea;
 .form-group select {
-    width: 100%,
-    padding: 12px 16px,
-    border: 1.5px solid var(--border),
-    border-radius: var(--radius-sm),
-    background: var(--bg-primary),
-    color: var(--text-primary),
-    font-family: var(--font-sans),
-    font-size: 0.95rem,
-    transition: var(--transition),
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    transition: var(--transition);
 }
 
-.form-group input:focus,
-.form-group textarea:focus,
+.form-group input:focus;
+.form-group textarea:focus;
 .form-group select:focus {
-    outline: none,
+    outline: none;
     border-color: var(--accent),  /* Borde morado al enfocar */
     box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1),  /* Brillo suave */
 }
@@ -2310,10 +2310,10 @@ select option[value="otro"] { background-image: none; }
 
 /* Grupo de checkboxes */
 .checkbox-group {
-    display: flex,
-    flex-direction: column,
-    gap: 10px,
-    margin-bottom: 20px,
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 /* ========================================
@@ -2335,7 +2335,7 @@ select option[value="otro"] { background-image: none; }
         background: var(--bg-secondary);
         flex-direction: column;
         padding: 100px 40px 40px;
-        gap: 16px,
+        gap: 16px;
         transition: right 0.4s ease;
         border-left: 1px solid var(--border);
         box-shadow: -20px 0 40px var(--shadow-lg);
@@ -2355,12 +2355,12 @@ select option[value="otro"] { background-image: none; }
     /* Responsive para nuevos elementos del formulario */
     .checkbox-group-grid {
         grid-template-columns: 1fr;  /* Una columna */
-        gap: 8px,
+        gap: 8px;
     }
     
     .radio-group.horizontal {
         flex-direction: column;  /* Apilado vertical */
-        gap: 10px,
+        gap: 10px;
     }
     
     .contact-grid {
@@ -2368,7 +2368,7 @@ select option[value="otro"] { background-image: none; }
     }
     
     .file-input {
-        padding: 14px,
+        padding: 14px;
         font-size: 0.9rem,  /* Texto más pequeño */
     }
     
@@ -2381,8 +2381,8 @@ select option[value="otro"] { background-image: none; }
     }
     
     .form-label {
-        font-size: 0.9rem,
-        margin-bottom: 8px,
+        font-size: 0.9rem;
+        margin-bottom: 8px;
     }
     
     .form-help {
